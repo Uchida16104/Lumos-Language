@@ -2,7 +2,7 @@
 
 Version 2.0.0 - Multi-Target Compiler & Interpreter
 
-![Lumos Logo](https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.png?v=1748865997035)
+![Lumos Logo](Lumos.png)
 
 [![npm version](https://img.shields.io/npm/v/lumos-language.svg)](https://www.npmjs.com/package/lumos-language)
 
