@@ -1,5 +1,5 @@
 {
-  "name": "lumos-language-enhanced",
+  "name": "lumos-language",
   "version": "2.0.0",
   "description": "Lumos Language - Enhanced Multi-Target Compiler supporting 100+ languages",
   "main": "./index.cjs",
@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/Uchida16104/Lumos-Language/issues"
   },
-  "homepage": "https://lumos-language.glitch.me",
+  "homepage": "https://uchida16104.github.io/Lumos-Language",
   "author": "Hirotoshi Uchida",
   "license": "MIT",
   "type": "commonjs",
