@@ -1,4 +1,4 @@
-# Lumos Language Enhanced
+# Lumos Language
 
 Version 2.0.0 - Multi-Target Compiler & Interpreter
 
