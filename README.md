@@ -2,9 +2,9 @@
 
 Version 2.0.0 - Multi-Target Compiler & Interpreter
 
-![Lumos Logo](Lumos.png)
-
 [![npm version](https://img.shields.io/npm/v/lumos-language.svg)](https://www.npmjs.com/package/lumos-language)
+
+![Lumos Logo](Lumos.png)
 
 ## Overview
 
