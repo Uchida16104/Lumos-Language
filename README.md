@@ -1,146 +1,339 @@
-# Lumos Language
+# Lumos Language Enhanced
+
+Version 2.0.0 - Multi-Target Compiler & Interpreter
+
+![Lumos Logo](https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.png?v=1748865997035)
 
 [![npm version](https://img.shields.io/npm/v/lumos-language.svg)](https://www.npmjs.com/package/lumos-language)
 
-<img src="https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.png?v=1748865997035" />
+## Overview
 
-Lumos is a lightweight, beginner-friendly interpreted programming language designed for learning, experimentation, and scripting.
+Lumos Language Enhanced is a comprehensive programming language implementation that supports compilation to over 100 target languages, frameworks, and technologies. This enhanced version builds upon the original Lumos Language with full-stack capabilities, multi-paradigm support, and professional-grade code generation.
 
-## Influences
+## Features
 
-Lumos is influenced by
+### Core Capabilities
 
-- Python
-- JavaScript
-- BASIC
-- ShellScript
+- Interactive REPL with multiline support
+- File-based script execution
+- Multi-target compilation to 100+ languages
+- Full abstract syntax tree (AST) generation
+- Comprehensive error handling
+- Built-in standard library
 
-## Available
+### Language Paradigms Supported
 
-- Variable Declaration:
-  <ul>
-    <li>
-      
-      let x = 5
+- Imperative programming
+- Object-oriented programming
+- Functional programming
+- Procedural programming
+- Declarative programming
+- Assembly-level programming
 
-    </li>
-  </ul>
-- Function Definition:
-  <ul>
-    <li>
-      
-      def greet(name) { let message = "Hello," + name }
+### Compilation Targets
 
-    </li>
-  </ul>
-- Function Invocation:
-  <ul>
-    <li>
-      
-      greet("Bob")
+#### Assembly Languages
+- x86/x64 Assembly
+- ARM Assembly
+- WebAssembly (WASM)
 
-    </li>
-  </ul>
-- Control Structures:
-  <ul>
-    <li>
-      
-      for i = 1 to 5 { let square = i * i }
+#### Compiled Languages
+- C, C++, Rust
+- Go, Swift, Objective-C
+- Java, C#, F#
+- Ada, D, Fortran
 
-    </li>
-    <li>
-      
-      while (x < 10) { let x = x + 1 }
+#### Interpreted Languages
+- Python, Ruby, Perl
+- PHP, Lua, Julia
+- R, MATLAB
 
-    </li>
-    <li>
-      
-      3.times do |i| {i} end
+#### Scripting Languages
+- JavaScript, TypeScript
+- Bash, PowerShell
+- VBScript, Groovy
 
-    </li>
-  </ul>
-- Conditional branch:
-  <ul>
-    <li>
-      
-      if (x == 10) {  let status = "Done"  } else {  let status = "Not yet"  }
+#### Functional Languages
+- Haskell, F#, OCaml
+- Scala, Clojure, Lisp
+- Elixir, Erlang
+- Scheme
 
-    </li>
-    <li>
-      
-      if (x == 10) { let status = "Done" } elsif (x == 20) { let status = "Already" } else { let status = "Not yet" }
+#### Web Technologies
+- HTML, CSS, JSX
+- React, Vue, Angular
+- Next.js, Nuxt, Svelte
 
-    </li>
-  </ul>
-- Break and Continue:
-  <ul>
-    <li>
-      
-      break
+#### Database Languages
+- SQL, PostgreSQL, MySQL
+- SQLite, MongoDB
+- GraphQL
 
-    </li>
-    <li>
-      
-      continue
+#### Specialized Languages
+- COBOL, Fortran, Pascal
+- Prolog, Lisp, Scheme
+- VHDL, Verilog, SystemC
+- MQL4/MQL5 (Trading)
 
-    </li>
-  </ul>
-- Launch from your terminal:
-  <ol>
-    <li>
-      
-      npm i lumos-language
+### Framework Support
 
-    </li>
-    <li>
-      
-      cd path/to/lumos-language
+#### Backend Frameworks
+- Laravel (PHP)
+- Django, FastAPI, Flask (Python)
+- Express, NestJS, Fastify (Node.js)
+- Phoenix (Elixir)
+- Spring Boot (Java)
+- ASP.NET (C#)
+- Ruby on Rails
 
-    </li>
-    <li>
-      
-      node index.cjs
+#### Frontend Frameworks
+- React, Vue, Angular
+- Next.js, Nuxt, Gatsby
+- Svelte, SvelteKit
+- Alpine.js, HTMX
+- Tailwind CSS
 
-    </li>
-  </ol>
-- Compile on your terminal:
-  <ol>
-    <li>
-      
-      npm i lumos-language
+#### Database ORMs
+- Prisma, TypeORM
+- SQLAlchemy, Django ORM
+- ActiveRecord
+- Sequelize
 
-    </li>
-    <li>
-      
-      cd path/to/lumos-language
+## Installation
 
-    </li>
-    <li> 
-    
-      node index.cjs main.lumos
-  
-    </li>
-  </ol>
-
-## Caution
-
-- Please write the code in a single line and don't execute it while writing.
-- When installing Lumos Language, don't use
-
-<code>npm install @uchida16104/lumos-language</code>
-
-but instead use
-
-```shellscript
-npm i lumos-language
+```bash
+npm install lumos-language-enhanced
 ```
 
-in the terminal.
+Or install globally:
 
-## Change
-- You can refer to [npm](https://www.npmjs.com/package/lumos-language) or [GitHub Releases](https://github.com/Uchida16104/Lumos-Language/releases).
+```bash
+npm install -g lumos-language-enhanced
+```
 
-## More Info
-Get from <strong><a href="https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.pdf?v=1748869028196">pdf</a></strong>.
+## Usage
 
-2025 © <a href="https://hirotoshiuchida.glitch.me">Hirotoshi Uchida</a>
+### Interactive REPL
+
+```bash
+lumos
+```
+
+In the REPL:
+
+```lumos
+lumos> let x = 42
+=> 42
+
+lumos> def greet(name) { return "Hello, " + name }
+=> [Function]
+
+lumos> greet("World")
+=> "Hello, World"
+
+lumos> .compile python
+Compiled to python:
+---
+x = 42
+
+def greet(name):
+    return "Hello, " + name
+---
+```
+
+### Running Files
+
+```bash
+lumos script.lumos
+```
+
+### Compilation
+
+Compile Lumos code to any target language:
+
+```bash
+lumos compile script.lumos python
+lumos compile script.lumos rust
+lumos compile script.lumos javascript
+```
+
+With optimization:
+
+```bash
+lumos compile script.lumos c --optimize
+```
+
+## Language Syntax
+
+### Variables
+
+```lumos
+let x = 10
+const PI = 3.14159
+var message = "Hello"
+```
+
+### Functions
+
+```lumos
+def add(a, b) {
+    return a + b
+}
+
+def fibonacci(n) {
+    if (n <= 1) {
+        return n
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+```
+
+### Classes
+
+```lumos
+class Person {
+    let name
+    let age
+    
+    def constructor(name, age) {
+        this.name = name
+        this.age = age
+    }
+    
+    def greet() {
+        return "Hello, I'm " + this.name
+    }
+}
+```
+
+### Control Flow
+
+```lumos
+if (x > 10) {
+    print("Greater")
+} elsif (x < 10) {
+    print("Lesser")
+} else {
+    print("Equal")
+}
+
+while (x < 100) {
+    x = x + 1
+}
+
+for i = 1 to 10 {
+    print(i)
+}
+```
+
+### Error Handling
+
+```lumos
+try {
+    let result = riskyOperation()
+} catch (error) {
+    print("Error:", error)
+} finally {
+    cleanup()
+}
+```
+
+## REPL Commands
+
+- `.help` - Show help message
+- `.exit` - Exit the REPL
+- `.history` - Show command history
+- `.compile [target]` - Compile to target language
+- `.targets` - Show all available targets
+- `.vars` - Show current variables
+- `.clear` - Clear the console
+- `.reset` - Reset the runtime
+
+## Architecture
+
+### Core Components
+
+- **Lexer**: Tokenizes source code
+- **Parser**: Generates Abstract Syntax Tree (AST)
+- **Evaluator**: Executes AST directly
+- **Compiler**: Orchestrates multi-target compilation
+- **Runtime**: Provides built-in functions and module system
+
+### Backend Generators
+
+Each target language has a dedicated backend generator that transforms the Lumos AST into idiomatic target code. Generators handle:
+
+- Syntax transformation
+- Type mapping
+- Standard library translation
+- Platform-specific optimizations
+
+## API Usage
+
+```javascript
+const LumosEngine = require('lumos-language-enhanced');
+
+const engine = new LumosEngine();
+
+const code = 'let x = 42';
+const result = engine.execute(code);
+
+const pythonCode = engine.compileToTarget(code, 'python');
+const rustCode = engine.compileToTarget(code, 'rust');
+```
+
+## Testing
+
+```bash
+npm test
+```
+
+## Contributing
+
+Contributions are welcome! Please read the contributing guidelines before submitting pull requests.
+
+## License
+
+MIT License - Copyright (c) 2025 Hirotoshi Uchida
+
+## Credits
+
+Created by Hirotoshi Uchida
+
+Influenced by Python, JavaScript, Ruby, and other modern programming languages.
+
+## Links
+
+- [Documentation](https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.pdf)
+- [GitHub Repository](https://github.com/Uchida16104/Lumos-Language)
+- [npm Package](https://www.npmjs.com/package/lumos-language)
+- [Official Website](https://lumos-language.glitch.me)
+
+## Support
+
+For issues and feature requests, please visit the [GitHub Issues](https://github.com/Uchida16104/Lumos-Language/issues) page.
+
+## Changelog
+
+### Version 2.0.0 (Enhanced)
+
+- Added multi-target compilation support for 100+ languages
+- Complete rewrite of lexer and parser
+- New AST-based architecture
+- Added comprehensive backend generators
+- Enhanced REPL with compilation support
+- Added class and module system
+- Improved error handling and reporting
+- Added framework integration support
+- Full TypeScript support
+- Database language support
+- Assembly language support
+
+### Version 1.1.2 (Original)
+
+- Initial release
+- Basic interpreter functionality
+- Simple REPL
+- Core language features
+
+2025 © Hirotoshi Uchida

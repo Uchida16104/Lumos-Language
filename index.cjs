@@ -1,157 +1,157 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
+const path = require("path");
 const readline = require("readline");
 
-const vars = {};
-const functions = {};
+const Lexer = require("./src/core/lexer");
+const Parser = require("./src/core/parser");
+const Evaluator = require("./src/core/evaluator");
+const Compiler = require("./src/core/compiler");
+const Runtime = require("./src/core/runtime");
+const REPL = require("./src/cli/repl");
+const FileRunner = require("./src/cli/fileRunner");
 
-function evaluateExpression(expr, scope = vars) {
-  expr = expr.trim();
-  if (/^".*"$/.test(expr)) return expr.slice(1, -1);
-  if (expr in scope) return scope[expr];
-  if (!isNaN(expr)) return Number(expr);
-
-  let m;
-
-  if ((m = expr.match(/^(.+?)\s*(==|!=|<=|>=|<|>)\s*(.+)$/))) {
-    const a = evaluateExpression(m[1], scope);
-    const b = evaluateExpression(m[3], scope);
-    switch (m[2]) {
-      case "==": return a == b;
-      case "!=": return a != b;
-      case "<=": return a <= b;
-      case ">=": return a >= b;
-      case "<":  return a < b;
-      case ">":  return a > b;
-    }
+class LumosEngine {
+  constructor() {
+    this.runtime = new Runtime();
+    this.compiler = new Compiler();
+    this.evaluator = new Evaluator(this.runtime);
+    this.version = "2.0.0";
   }
 
-  if ((m = expr.match(/^(.+?)\s*([+\-*/%])\s*(.+)$/))) {
-    const a = evaluateExpression(m[1], scope);
-    const b = evaluateExpression(m[3], scope);
-    switch (m[2]) {
-      case "+": return a + b;
-      case "-": return a - b;
-      case "*": return a * b;
-      case "/": return a / b;
-      case "%": return a % b;
-    }
-  }
-
-  throw new Error("Invalid expression: " + expr);
-}
-
-function interpret(cmd) {
-  let m;
-
-  if ((m = cmd.match(/^let\s+(\w+)\s*=\s*(.+)$/))) {
-    const name = m[1], value = evaluateExpression(m[2]);
-    vars[name] = value;
-    return `${name} = ${value}`;
-  }
-
-  if ((m = cmd.match(/^def\s+(\w+)\(([^)]*)\)\s*{([\s\S]+)}$/))) {
-    const name = m[1];
-    const params = m[2].split(",").map(s => s.trim()).filter(Boolean);
-    const body = m[3].trim();
-    functions[name] = { params, body };
-    return `Function ${name} defined.`;
-  }
-
-  if ((m = cmd.match(/^(\w+)\((.*)\)$/)) && functions[m[1]]) {
-    const func = functions[m[1]];
-    const args = m[2] ? m[2].split(",").map(s => s.trim()) : [];
-    const localScope = { ...vars };
-    func.params.forEach((p, i) => {
-      localScope[p] = evaluateExpression(args[i], vars);
-    });
-    const letm = func.body.match(/^let\s+(\w+)\s*=\s*(.+)$/);
-    if (!letm) throw new Error("Invalid function body");
-    const res = evaluateExpression(letm[2], localScope);
-    vars[letm[1]] = res;
-    return `${letm[1]} = ${res}`;
-  }
-
-  if ((m = cmd.match(/^for\s+(\w+)\s*=\s*(\d+)\s+to\s+(\d+)\s*{([\s\S]+)}$/))) {
-    const [_, v, s, e, body] = m;
-    for (let i = +s; i <= +e; i++) {
-      vars[v] = i;
-      interpret(body.trim());
-    }
-    return `Looped ${v} from ${s} to ${e}`;
-  }
-
-  if ((m = cmd.match(/^while\s*\((.+?)\)\s*{([\s\S]+)}$/))) {
-    const cond = m[1], body = m[2].trim();
-    let count = 0;
-    while (evaluateExpression(cond)) {
-      interpret(body);
-      if (++count > 10000) throw new Error("Infinite loop detected");
-    }
-    return "While loop executed.";
-  }
-
-  if ((m = cmd.match(/^if\s*\((.+?)\)\s*{([\s\S]+?)}(?:\s*elsif\s*\((.+?)\)\s*{([\s\S]+?)})?(?:\s*else\s*{([\s\S]+?)})?$/))) {
-    if (evaluateExpression(m[1])) return interpret(m[2].trim());
-    else if (m[3] && evaluateExpression(m[3])) return interpret(m[4].trim());
-    else if (m[5]) return interpret(m[5].trim());
-    return "If condition was false.";
-  }
-
-  if ((m = cmd.match(/^(\d+)\.times\s+do\s+\|(\w+)\|\s*{([\s\S]+)}\s*end$/))) {
-    const [_, n, v, body] = m;
-    let out = [];
-    for (let i = 0; i < +n; i++) {
-      vars[v] = i;
-      out.push(interpret(body.trim()));
-    }
-    return out.join("\n");
-  }
-
-  if (vars.hasOwnProperty(cmd)) {
-    return vars[cmd];
-  }
-
-  throw new Error("Unrecognized command: " + cmd);
-}
-
-function runFile(fn) {
-  const lines = fs.readFileSync(fn, "utf8").split(/\r?\n/);
-  lines.filter(line => line.trim()).forEach(line => {
-    const res = interpret(line.trim());
-    console.log("> " + res);
-  });
-}
-
-function startREPL() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    prompt: "Lumos> ",
-  });
-  console.log("Welcome to Lumos CLI (type exit)");
-  rl.prompt();
-
-  rl.on("line", line => {
-    if (line.trim() === "exit") return rl.close();
-    if (line.trim()) {
-      try {
-        const res = interpret(line.trim());
-        console.log("> " + res);
-      } catch (e) {
-        console.error("! " + e.message);
+  execute(code, options = {}) {
+    try {
+      const lexer = new Lexer(code);
+      const tokens = lexer.tokenize();
+      
+      const parser = new Parser(tokens);
+      const ast = parser.parse();
+      
+      if (options.compile) {
+        return this.compiler.compile(ast, options.target || "javascript");
       }
+      
+      return this.evaluator.evaluate(ast);
+    } catch (error) {
+      throw new Error(`Lumos Execution Error: ${error.message}`);
     }
-    rl.prompt();
-  });
+  }
 
-  rl.on("close", () => {
-    console.log("Goodbye!");
-    process.exit(0);
-  });
+  compileToTarget(code, target) {
+    const lexer = new Lexer(code);
+    const tokens = lexer.tokenize();
+    const parser = new Parser(tokens);
+    const ast = parser.parse();
+    
+    return this.compiler.compile(ast, target);
+  }
+
+  runFile(filepath) {
+    const runner = new FileRunner(this);
+    return runner.run(filepath);
+  }
+
+  startREPL() {
+    const repl = new REPL(this);
+    repl.start();
+  }
 }
 
-const args = process.argv.slice(2);
-if (args.length) runFile(args[0]);
-else startREPL();
+function main() {
+  const args = process.argv.slice(2);
+  const engine = new LumosEngine();
+
+  if (args.length === 0) {
+    console.log(`Lumos Language v${engine.version}`);
+    console.log("Enhanced Multi-Target Compiler & Interpreter");
+    console.log("Type 'exit' to quit, 'help' for commands\n");
+    engine.startREPL();
+    return;
+  }
+
+  const command = args[0];
+
+  if (command === "--version" || command === "-v") {
+    console.log(`Lumos Language v${engine.version}`);
+    return;
+  }
+
+  if (command === "--help" || command === "-h") {
+    console.log(`
+Lumos Language - Multi-Target Compiler & Interpreter
+
+Usage:
+  lumos [file.lumos]                 Run a Lumos file
+  lumos compile [file.lumos] [target] Compile to target language
+  lumos --version                    Show version
+  lumos --help                       Show this help
+
+Compilation Targets:
+  Assembly:    x86, arm, wasm
+  Compiled:    c, cpp, rust, go, java, csharp, swift, ada, d, fortran
+  Interpreted: python, ruby, php, perl, lua, javascript, typescript
+  Functional:  haskell, scala, elixir, erlang, fsharp, clojure, lisp
+  Web:         html, jsx, vue, react, nextjs
+  Database:    sql, postgresql, mysql, sqlite, mongodb
+  Frameworks:  laravel, django, fastapi, express, nestjs, phoenix
+  Specialized: cobol, matlab, vhdl, mql4, vba, gas
+
+Examples:
+  lumos script.lumos
+  lumos compile script.lumos python
+  lumos compile script.lumos rust --optimize
+    `);
+    return;
+  }
+
+  if (command === "compile") {
+    if (args.length < 3) {
+      console.error("Error: Missing file or target");
+      console.error("Usage: lumos compile [file.lumos] [target]");
+      process.exit(1);
+    }
+
+    const filepath = args[1];
+    const target = args[2];
+
+    if (!fs.existsSync(filepath)) {
+      console.error(`Error: File not found: ${filepath}`);
+      process.exit(1);
+    }
+
+    try {
+      const code = fs.readFileSync(filepath, "utf8");
+      const compiled = engine.compileToTarget(code, target);
+      
+      const ext = engine.compiler.getExtension(target);
+      const outputPath = filepath.replace(/\.lumos$/, ext);
+      
+      fs.writeFileSync(outputPath, compiled);
+      console.log(`Successfully compiled to ${target}: ${outputPath}`);
+    } catch (error) {
+      console.error(`Compilation Error: ${error.message}`);
+      process.exit(1);
+    }
+    return;
+  }
+
+  const filepath = args[0];
+  if (!fs.existsSync(filepath)) {
+    console.error(`Error: File not found: ${filepath}`);
+    process.exit(1);
+  }
+
+  try {
+    engine.runFile(filepath);
+  } catch (error) {
+    console.error(`Runtime Error: ${error.message}`);
+    process.exit(1);
+  }
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = LumosEngine;

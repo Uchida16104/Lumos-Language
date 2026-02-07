@@ -1,286 +1,132 @@
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Lumos Language</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.png" />
-    <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.ico" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumos Language Enhanced</title>
     <style>
-      body {
-        font-family: monospace;
-        background: #1e1e1e;
-        color: #d4d4d4;
-        padding: 1em;
-      }
-      .header {
-        display: flex;
-      }
-      h1 {
-        font-size: 4em;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      h3 {
-        font-size: 2em;
-      }
-      iframe {
-        display: block;
-        margin: 0 auto;
-      }
-      .header>img {
-        width: 10%;
-        height: 10%;
-      }
-      #output {
-        white-space: pre-wrap;
-        margin-top: 1em;
-      }
-      input[type="text"] {
-        width: 100%;
-        padding: 0.5em;
-        background: #2e2e2e;
-        color: white;
-        border: none;
-      }
-      .history-item {
-        cursor: pointer;
-        color: #9cdcfe;
-      }
-      #compileButton {
-        margin-top: 1em;
-        background: #007acc;
-        color: white;
-        border: none;
-        padding: 0.5em 1em;
-        cursor: pointer;
-        font-weight: bold;
-      }
-      #compileButton:hover {
-        background: #005f9e;
-      }
-      h5, #logo {
-        text-align: center;
-      }
-      .github {
-        mix-blend-mode: darken;
-      }
-      .npm {
-        mix-blend-mode: color;
-      }
-      .github, .npm {
-        width: 100px;
-        height: 100px;
-      }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        p { line-height: 1.8; margin-bottom: 1rem; font-size: 1.1rem; }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .feature h3 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .button {
+            display: inline-block;
+            background: #ffd700;
+            color: #333;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: #ffed4e;
+            transform: scale(1.05);
+        }
     </style>
-  </head>
-  <body>
-    <div class="header">
-      <img src="https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.png?v=1748865997035" />
-      <h1>Lumos Language</h1>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Lumos Language Enhanced</h1>
+        <p><strong>Version 2.0.0</strong> - Multi-Target Compiler & Interpreter</p>
+        
+        <h2>Overview</h2>
+        <p>Lumos Language Enhanced is a comprehensive programming language that compiles to over 100 target languages, frameworks, and technologies. From assembly to web frameworks, from functional to imperative paradigms, Lumos supports it all.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🚀 Multi-Target Compilation</h3>
+                <p>Compile to Python, Rust, JavaScript, C++, Go, Java, and 95+ more languages</p>
+            </div>
+            <div class="feature">
+                <h3>💻 Interactive REPL</h3>
+                <p>Test code instantly with full multiline support and live compilation</p>
+            </div>
+            <div class="feature">
+                <h3>🏗️ Framework Support</h3>
+                <p>Generate code for Laravel, Django, React, Vue, Next.js, and more</p>
+            </div>
+            <div class="feature">
+                <h3>🔧 Full-Stack Ready</h3>
+                <p>Backend, frontend, database, and infrastructure code generation</p>
+            </div>
+        </div>
+        
+        <h2>Quick Start</h2>
+        <div class="code-block">
+            <code>npm install lumos-language-enhanced<br>
+            lumos<br>
+            <br>
+            lumos> let x = 42<br>
+            lumos> def greet(name) { return "Hello, " + name }<br>
+            lumos> .compile python</code>
+        </div>
+        
+        <h2>Supported Technologies</h2>
+        <p><strong>Languages:</strong> C, C++, Rust, Go, Java, C#, Python, Ruby, PHP, JavaScript, TypeScript, Haskell, Scala, Elixir, and many more...</p>
+        <p><strong>Frameworks:</strong> Laravel, Django, FastAPI, Express, NestJS, React, Vue, Next.js, Phoenix...</p>
+        <p><strong>Databases:</strong> PostgreSQL, MySQL, SQLite, MongoDB, Redis...</p>
+        
+        <a href="README.md" class="button">View Documentation</a>
+        <a href="https://github.com/Uchida16104/Lumos-Language" class="button">GitHub Repository</a>
     </div>
-    <a href="https://www.npmjs.com/package/lumos-language"><img src="https://img.shields.io/npm/v/lumos-language.svg" alt="npm" /></a>
-    <h4>Press Enter / Return to execute your code.</h4>
-    <input type="text" id="input" placeholder="Enter command..." />
-    <button id="compileButton">Compile</button>
-    <br />
-    <h3>Usage</h3>
-    <iframe src="https://cdn.glitch.global/a6e15949-0cae-4ce8-a653-5883a6d0adc5/Lumos.pdf?v=1748869028196" width="80%" height="50%"></iframe>
-    <div id="output"></div>
-    <script>
-      class BreakException {}
-      class ContinueException {}
-
-      const vars = {};
-      const functions = {};
-      const history = [];
-
-      function evaluateExpression(expr) {
-        try {
-          return Function(...Object.keys(vars), `return (${expr})`)(...Object.values(vars));
-        } catch (e) {
-          throw new Error("Invalid expression: " + expr);
-        }
-      }
-
-      function preprocessCommand(command) {
-        command = command.replace(/\r\n/g, "\n");
-
-        const timesRegex = /^(\d+)\.times\s+do\s+\|([a-zA-Z_][a-zA-Z0-9_]*)\|([\s\S]+?)end$/;
-        const timesMatch = command.match(timesRegex);
-        if (timesMatch) {
-          const count = parseInt(timesMatch[1]);
-          const varName = timesMatch[2];
-          const body = timesMatch[3].trim();
-          let result = "";
-          for (let i = 0; i < count; i++) {
-            vars[varName] = i;
-            result += interpret(body) + "\n";
-          }
-          return result.trim();
-        }
-
-        const ifElseRegex = /^if\s*\((.+?)\)\s*\{([\s\S]+?)\}(?:\s*elsif\s*\((.+?)\)\s*\{([\s\S]+?)\})?(?:\s*else\s*\{([\s\S]+?)\})?$/;
-        const ifElseMatch = command.match(ifElseRegex);
-        if (ifElseMatch) {
-          const [, cond1, body1, cond2, body2, body3] = ifElseMatch;
-          if (evaluateExpression(cond1)) return interpret(body1.trim());
-          if (cond2 && evaluateExpression(cond2)) return interpret(body2.trim());
-          if (body3) return interpret(body3.trim());
-          return "If condition was false.";
-        }
-
-        return null;
-      }
-
-      function interpret(command) {
-        const preprocessed = preprocessCommand(command);
-        if (preprocessed !== null) return preprocessed;
-
-        command = command.trim();
-
-        if (/^let\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/.test(command)) {
-          const [, name, value] = command.match(/^let\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/);
-          vars[name] = evaluateExpression(value);
-          return `${name} = ${vars[name]}`;
-        }
-
-        if (/^def\s+([a-zA-Z_][a-zA-Z0-9_]*)\(([^)]*)\)\s*\{([\s\S]*)\}$/.test(command)) {
-          const [, name, args, body] = command.match(/^def\s+([a-zA-Z_][a-zA-Z0-9_]*)\(([^)]*)\)\s*\{([\s\S]*)\}$/);
-          functions[name] = {
-            args: args.split(",").map((s) => s.trim()).filter((s) => s),
-            body: body.trim(),
-          };
-          return `Function ${name} defined.`;
-        }
-
-        if (/^([a-zA-Z_][a-zA-Z0-9_]*)\((.*)\)$/.test(command)) {
-          const [, name, argstr] = command.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\((.*)\)$/);
-          if (!functions[name]) throw new Error("Undefined function: " + name);
-          const func = functions[name];
-          const argValues = argstr.split(",").map((s) => evaluateExpression(s.trim()));
-          const localVars = {};
-          func.args.forEach((arg, i) => (localVars[arg] = argValues[i]));
-
-          const prevVars = Object.assign({}, vars);
-          Object.assign(vars, localVars);
-
-          let result;
-          try {
-            result = interpret(func.body);
-          } finally {
-            Object.assign(vars, prevVars);
-          }
-          return result;
-        }
-
-        let loopMatch = command.match(/^for\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+?)\s+to\s+(.+?)\s*\{([\s\S]+)\}$/);
-        if (loopMatch) {
-          const vname = loopMatch[1];
-          const start = evaluateExpression(loopMatch[2]);
-          const end = evaluateExpression(loopMatch[3]);
-          const body = loopMatch[4];
-
-          for (let i = start; i <= end; i++) {
-            vars[vname] = i;
-            try {
-              interpret(body.trim());
-            } catch (e) {
-              if (e instanceof BreakException) break;
-              if (e instanceof ContinueException) continue;
-              throw e;
-            }
-          }
-          return `Looped ${vname} from ${start} to ${end}`;
-        }
-
-        let whileMatch = command.match(/^while\s*\((.+?)\)\s*\{([\s\S]+)\}$/);
-        if (whileMatch) {
-          const condition = whileMatch[1];
-          const body = whileMatch[2];
-
-          while (evaluateExpression(condition)) {
-            try {
-              interpret(body.trim());
-            } catch (e) {
-              if (e instanceof BreakException) break;
-              if (e instanceof ContinueException) continue;
-              throw e;
-            }
-          }
-          return "While loop executed.";
-        }
-
-        if (command === "break") throw new BreakException();
-        if (command === "continue") throw new ContinueException();
-
-        return evaluateExpression(command);
-      }
-
-      const input = document.getElementById("input");
-      const output = document.getElementById("output");
-
-      input.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-          const command = input.value.trim();
-          if (command === "") return;
-
-          history.push(command);
-
-          const historyItem = document.createElement("div");
-          historyItem.className = "history-item";
-          historyItem.textContent = command;
-          historyItem.onclick = () => {
-            input.value = command;
-            input.focus();
-          };
-          output.appendChild(historyItem);
-
-          try {
-            const result = interpret(command);
-            const resultDiv = document.createElement("div");
-            resultDiv.textContent = `> ${result}`;
-            output.appendChild(resultDiv);
-          } catch (err) {
-            const errorDiv = document.createElement("div");
-            errorDiv.textContent = `! ${err.message}`;
-            errorDiv.style.color = "red";
-            output.appendChild(errorDiv);
-          }
-
-          input.value = "";
-        }
-      });
-
-      document.getElementById("compileButton").addEventListener("click", () => {
-        output.appendChild(document.createElement("hr"));
-
-        for (let i = 0; i < history.length; i++) {
-          const command = history[i];
-          const lineHeader = `Line ${i + 1}: `;
-
-          const historyLine = document.createElement("div");
-          historyLine.className = "history-item";
-          historyLine.textContent = lineHeader + command;
-          output.appendChild(historyLine);
-
-          try {
-            const result = interpret(command);
-            const resultDiv = document.createElement("div");
-            resultDiv.textContent = `> ${result}`;
-            output.appendChild(resultDiv);
-          } catch (err) {
-            const errorDiv = document.createElement("div");
-            errorDiv.textContent = `! ${err.message}`;
-            errorDiv.style.color = "red";
-            output.appendChild(errorDiv);
-          }
-        }
-      });
-    </script>
-    <footer>
-      <div id="logo">
-        <a href="https://github.com/Uchida16104/Lumos-Language"><img class="github" src="https://icon2.cleanpng.com/20180530/ywr/kisspng-github-computer-icons-directory-5b0ec64b102792.7107546015276949230662.jpg" /></a>
-      </div>
-      <h5>2025 © Hirotoshi Uchida</h5>
-    </footer>
-  </body>
+</body>
 </html>

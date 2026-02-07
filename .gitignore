@@ -1,3 +1,14 @@
 *.log
 node_modules/
 package-lock.json
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+dist/
+build/
+coverage/
+.env
+.env.local
