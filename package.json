@@ -1,7 +1,7 @@
 {
-  "name": "@Uchida16104/lumos-language",
-  "version": "1.1.2",
-  "description": "Lumos Language - Interactive CLI",
+  "name": "lumos-language-enhanced",
+  "version": "2.0.0",
+  "description": "Lumos Language - Enhanced Multi-Target Compiler supporting 100+ languages",
   "main": "./index.cjs",
   "bin": {
     "lumos": "./index.cjs"
@@ -9,9 +9,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Uchida16104/Lumos-Language.git"
-  },
-  "publishConfig": {
-    "@Uchida16104:registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/Uchida16104/Lumos-Language/issues"
@@ -21,10 +18,20 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "start": "node ./index.cjs && rm -f package.json && refresh",
-    "test": "echo 'Running lumos...' && node ./index.cjs"
+    "start": "node ./index.cjs",
+    "test": "node tests/run.js",
+    "build": "echo 'Build complete'",
+    "dev": "node ./index.cjs"
   },
   "keywords": [
-    "programming-language"
-  ]
+    "programming-language",
+    "compiler",
+    "interpreter",
+    "multi-target",
+    "transpiler",
+    "code-generation"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
