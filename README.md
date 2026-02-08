@@ -35,8 +35,6 @@ Lumos Language Enhanced is a comprehensive programming language implementation t
 #### Interpreted Languages
 - Python
 - Ruby
-- Perl
-
 
 ### Framework Support
 
