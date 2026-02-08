@@ -1,6 +1,6 @@
 {
   "name": "@Uchida16104/lumos-language",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "Lumos Language - Enhanced Multi-Target Compiler supporting 100+ languages",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
