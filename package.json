@@ -1,5 +1,5 @@
 {
-  "name": "@Uchida16104/lumos-language",
+  "name": "lumos-language",
   "version": "2.1.1",
   "description": "Lumos Language - Enhanced Multi-Target Compiler supporting 100+ languages",
   "publishConfig": {
