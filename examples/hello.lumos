@@ -1,0 +1,5 @@
+let message = "Hello, Lumos Language!"
+
+print(message)
+
+for i = 1 to 5 { print("Count: " + str(i)) }

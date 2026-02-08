@@ -32,48 +32,11 @@ Lumos Language Enhanced is a comprehensive programming language implementation t
 
 ### Compilation Targets
 
-#### Assembly Languages
-- x86/x64 Assembly
-- ARM Assembly
-- WebAssembly (WASM)
-
-#### Compiled Languages
-- C, C++, Rust
-- Go, Swift, Objective-C
-- Java, C#, F#
-- Ada, D, Fortran
-
 #### Interpreted Languages
-- Python, Ruby, Perl
-- PHP, Lua, Julia
-- R, MATLAB
+- Python
+- Ruby
+- Perl
 
-#### Scripting Languages
-- JavaScript, TypeScript
-- Bash, PowerShell
-- VBScript, Groovy
-
-#### Functional Languages
-- Haskell, F#, OCaml
-- Scala, Clojure, Lisp
-- Elixir, Erlang
-- Scheme
-
-#### Web Technologies
-- HTML, CSS, JSX
-- React, Vue, Angular
-- Next.js, Nuxt, Svelte
-
-#### Database Languages
-- SQL, PostgreSQL, MySQL
-- SQLite, MongoDB
-- GraphQL
-
-#### Specialized Languages
-- COBOL, Fortran, Pascal
-- Prolog, Lisp, Scheme
-- VHDL, Verilog, SystemC
-- MQL4/MQL5 (Trading)
 
 ### Framework Support
 
@@ -102,13 +65,13 @@ Lumos Language Enhanced is a comprehensive programming language implementation t
 ## Installation
 
 ```bash
-npm install lumos-language-enhanced
+npm install lumos-language
 ```
 
 Or install globally:
 
 ```bash
-npm install -g lumos-language-enhanced
+npm install -g lumos-language
 ```
 
 ## Usage
@@ -287,6 +250,10 @@ const rustCode = engine.compileToTarget(code, 'rust');
 ```bash
 npm test
 ```
+
+## Caution
+
+- ***Please write all code on a single line.***
 
 ## Contributing
 
